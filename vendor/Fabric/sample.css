@@ -1,0 +1,97 @@
+/**
+The format below belongs to KSS. I use it as a reference for developing my own syntax.
+*/
+
+/*
+A button suitable for giving stars to someone.
+
+Markup: <a class="button star $modifierClass">Button</a>
+
+:hover              - Subtle hover highlight.
+.stars--given       - A highlight indicating you've already given a star.
+.stars--given:hover - Subtle hover highlight on top of stars-given styling.
+.stars--disabled    - Dims the button to indicate it cannot be used.
+
+Styleguide Buttons - Star Button
+*/
+a.button.star {
+  ...
+}
+a.button.star:hover {
+  ...
+}
+a.button.stars--given {
+  ...
+}
+a.button.stars--given:hover {
+  ...
+}
+a.button.stars--disabled {
+  ...
+}
+
+
+/**
+I'm working on my own syntax below. I experiment with it to see how it works.
+*/
+
+/**
+Star Button
+
+A button suitable for giving stars to someone.
+
+Markup: <a class="button star $modifierClass">Button</a>
+
+:hover              Subtle hover highlight.
+.stars--given       A highlight indicating you've already given a star.
+.stars--given:hover Subtle hover highlight on top of stars-given styling.
+.stars--disabled    Dims the button to indicate it cannot be used.
+
+@section: Buttons / Star Button
+*/
+
+.button.star {
+  ...
+}
+.button.star:hover {
+  ...
+}
+.button.stars--given {
+  ...
+}
+.button.stars--given:hover {
+  ...
+}
+.button.stars--disabled {
+  ...
+}
+
+/*
+Star Button
+
+A button suitable for giving stars to someone.
+
+@markup: <a class="button star $modifierClass">Button</a>
+
+:hover              - Subtle hover highlight.
+.stars--given       - A highlight indicating you've already given a star.
+.stars--given:hover - Subtle hover highlight on top of stars-given styling.
+.stars--disabled    - Dims the button to indicate it cannot be used.
+
+@section: Buttons / Star Button
+*/
+.button.star {
+  ...
+}
+.button.star:hover {
+  ...
+}
+.button.stars--given {
+  ...
+}
+.button.stars--given:hover {
+  ...
+}
+.button.stars--disabled {
+  ...
+}

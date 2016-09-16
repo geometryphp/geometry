@@ -1,0 +1,113 @@
+TODO
+
+Format
+
+[task], [priority]
+[subject]
+<empty line>
+[description]
+TBD
+
++ Write todo tasks here
+
++ 2015/09/24: Create an abstract HTTP request that the app developer can use.
+  See \Core\Request.
+
++ 2015/09/23: The programmer should be able to specify the error template that
+  will be displayed on internal errors. This error template would appear on
+  the occurrence of a missing controller or a missing framework file, for
+  example. The reason why such errors occur may be blamed on the application
+  developer or the framework developer. The programmer should be able to
+  specify the error template in the `config.php` file. The constant defined
+  in config will then be used by the framework to name the template that is
+  displayed when an error occurs.
+
++ 2016/05/10: This needs to be faster. Replace FOR loops in router with more
+  efficient algorithm.
+
++ 2016/05/10: Strip away unnecessary objects that don't serve any purpose.
+  This framework can be a simple framework that gets the job of routing
+  and MVC done, and doesn't need to be any more. If plain PHP can make websites
+  then this can websites too.
+
++ 2016/05/14: Let routes have names. So one can references a route by name.
+  Let say we have a route named 'viewPost' and we define it as follows.
+    $route->get(array(
+            "name"=>"viewPost",
+            "path"=>"/post/:id",
+            "controller"=>"view@post"
+    ));
+  By having a name that identifies the route, we can add some extra APIs to
+  the Route object. For instance, we can have an API that generates a full
+  URL for a route. Using the route defined above, we can generate a URL for it.
+  The URL-generation API could take the route name and placeholder values as
+  input. So for the route above, it will take 'viewPost' as the route name
+  and an number for the post ID. Running the code
+    echo Route::url('viewPost',array("id"=>12345));
+  we get
+    http://example.com/post/12345
+  And that's just one example. There are many more useful APIs that can
+  be developed when we give routes names.
+
++ 2016/05/20: Move Octagon to its own repository once all its kinks are ironed out.
+  After building Floursack, extract Octagon to its own repo, give it
+  its own brand (logo, website, documentation, etc.).
+
++ 2016/05/25: I was experiencing an error I received this PHP fatal error (paraphrased):
+    "Reached maximum nest level for function; aborting."
+  The issue seemed to be comming from \Octagon\View\View.php. I couldn't figure out
+  what could be causing, but I found this to be the issue after investigating problem.
+  Apparently this was the problem: 1) When an error occurs in \Octagon\View\View,
+  it creates a View instance so it can return a nice error message. The problem
+  with that particular situation was that I had deleted the DEFAULT_ERROR_TEMPLATE file,
+  but the thing was that's the template that View uses in its error reporting.
+  So, View calls View (sub) because it can't find DEFAULT_ERROR_TEMPLATE. Now,
+  View (sub) calls View (subsub) because it can't find DEFAULT_ERROR_TEMPLATE.
+  Then, View (subsub) calls View (subsubsub) because---well, you guessed it---
+  it can't find DEFAULT_ERROR_TEMPLATE. And the stories continues, until it
+  reaches the maximum nest level mentioned above.
+
+  I need to solve it problem by letting checking to see if the files exists.
+
++ 2016/08/20: In source\config.php, rename "default_not_found_template" to "not_found_template"
+  and "default_error_template" to "fatal_error_template"
+
++ 2016/08/20: Improve Registry object by giving it get() and set() methods so that
+  objects can be added without needing to write a method everytime we want to add
+  an object. We instead maintain an array and use set() and get() to add the objects
+  to the array.
+
+
++ 2016/08/20: Support requests from command-line via $argv.
+
+1
++ 2016/09/13: Decouple the framework's components from its environment.
+  The components live in the 'vendor' directory under the name 'Octagon'.
+  The components are stored under the 'Octagon' folder. Whereas, outside
+  the 'vendor' folder, we have the environment in which the apps live.
+  There are folders like 'app', 'public', 'storage', etc.. These are
+  the environment in which Octagon operates. I would like to decouple
+  the framework components from the environment. The component shouldn't know
+  about the environment. An example of close coupling and dependency
+  exists in the Kernel (located in a component) where the user-defined routes
+  are loaded from the 'route.php' (located in the environment).
+      $routeCollection = (require APP_CONFIG_DIRECTORY . DIRECTORY_SEPARATOR . APP_ROUTE_FILE);
+  This line directly ties the component to the environment. I'm thinking my solution
+  may be the thing I was running from: Composer.
+
+
+  The framework will be separated into two packages: Geometry, the framework skeleton or directory layout; and Octagon, the framework muscle or the components that help leviate the overhead existent in the early development of a web application.
+
+Geometry will represent the framework. The framework's new name is 'Geometry'.
+
+Geometry will itself be a package and will require the Octagon package to work. I will join the two using Composer.
+
+
+DONE
+
+- Write completed tasks here
+
+- 2015/09/22: Extended the autoloader so that it loads the classes from the
+  vendor directory using the class' namespace and its name as the path to
+  the class. This solution does not cascade the directories for all files
+  as was originally intended.
