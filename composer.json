@@ -1,5 +1,5 @@
 {
-    "name": "geometry/geometry",
+    "name": "gmtry/geometry",
     "description": "A PHP framework for web applications on php/mysql/apache stacks",
     "keywords": ["php","framework"],
     "homepage": "https://github.com/gmtry/geometry",
