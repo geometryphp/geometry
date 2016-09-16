@@ -1,0 +1,10 @@
+{
+    "name": "geometry/geometry",
+    "description": "A PHP framework for web applications on php/mysql/apache stacks",
+    "keywords": ["php","framework"],
+    "homepage": "https://github.com/gmtry/geometry",
+    "type": "library",
+    "require": {
+        "php": ">=5.4"
+    }
+}
