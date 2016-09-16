@@ -2,7 +2,7 @@
 
 *Draft.*
 
-### Introduction
+## Introduction
 
 Geometry is a PHP framework for web applications built on php/mysql/apache stacks. Geometry provides the bare minimal setup for getting your web application on its legs and running.
 
@@ -15,7 +15,7 @@ of a web application.
 
 - Provide only the bare minimal services for a web application.
 - Be neat in architecture and user experience.
-- Stand in the likes the big boys (Symfony, Laravel, etc.)
+- Stand in the likes of the big boys (Symfony, Laravel, etc.)
 
 ## Documentation
 
