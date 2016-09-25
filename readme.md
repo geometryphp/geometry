@@ -1,8 +1,6 @@
 # Geometry
 
-### Status
-
-Not for production use. Geometry is currently under development.
+**Status** --- Not for production use. Geometry is currently under development.
 
 ## Introduction
 
