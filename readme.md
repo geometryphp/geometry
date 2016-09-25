@@ -1,6 +1,8 @@
 # Geometry
 
-*Draft.*
+### Status
+
+Not for production use. Geometry is currently under development.
 
 ## Introduction
 
@@ -14,7 +16,7 @@ of a web application.
 ## Goals
 
 - Provide only the bare minimal services for a web application.
-- Be neat in architecture and user experience.
+- Be elegant in architecture and user experience.
 - Stand in the likes of the big boys (Symfony, Laravel, etc.)
 
 ## Documentation
