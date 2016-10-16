@@ -77,10 +77,8 @@ TBD
   an object. We instead maintain an array and use set() and get() to add the objects
   to the array.
 
-
 + 2016/08/20: Support requests from command-line via $argv.
 
-1
 + 2016/09/13: Decouple the framework's components from its environment.
   The components live in the 'vendor' directory under the name 'Octagon'.
   The components are stored under the 'Octagon' folder. Whereas, outside
@@ -96,11 +94,17 @@ TBD
   may be the thing I was running from: Composer.
 
 
-  The framework will be separated into two packages: Geometry, the framework skeleton or directory layout; and Octagon, the framework muscle or the components that help leviate the overhead existent in the early development of a web application.
+  The framework will be separated into two packages: Geometry, the framework
+  skeleton or directory layout; and Octagon, the framework muscle or the
+  components that help alleviate the overhead existent in the early development
+  of a web application.
 
-Geometry will represent the framework. The framework's new name is 'Geometry'.
+  Geometry will represent the framework. The framework's new name is 'Geometry'.
 
-Geometry will itself be a package and will require the Octagon package to work. I will join the two using Composer.
+  Geometry will itself be a package and will require the Octagon package to work.
+  I will join the two using Composer.
+
++ 2016/09/25:
 
 
 DONE
