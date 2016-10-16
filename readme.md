@@ -1,6 +1,6 @@
 # Geometry
 
-**Status** --- Not for production use. Geometry is currently under development.
+Status: Not for production use. Geometry is currently under development. I'm currently developing the framework under a real-world project. Once the project is completed, the framework should be available.
 
 ## Introduction
 
