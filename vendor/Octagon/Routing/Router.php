@@ -82,9 +82,10 @@ class Router
         }
 
         // Does request path and route path match? To see if both paths match
-        // each other, compare their corresponding parts. The part for a request
-        // and route match if 1) boths strings are the same, or 2) the route part
-        // is a placeholder.
+        // each other, compare their corresponding parts from start to end.
+        //
+        // The part for a request and route match if 1) boths strings are
+        // the same, or 2) the route part is a placeholder.
         foreach ($routeParts as $index => $routePathPart) {
             if (strtolower($routePathPart) != strtolower($requestParts[$index])) {
                 if (!self::isPlaceholder($routePathPart)) {
@@ -114,6 +115,7 @@ class Router
         }
         return $args;
     }
+
     // Substitute placeholders with values.
 
     private static function subArgs($path, $args = array()) {
@@ -166,30 +168,87 @@ class Router
         return self::$routeCollection;
     }
 
-    // Set full base URL to be used in generating URL.
+    // Get or set the full base URL to be used in generating the URL.
+    // See CakePHP's fullBaseUrl() for inspiration.
 
-    public static function fullBaseUrl($base = null)
+    public static function fullBaseUrl()
     {
-        self::$baseUrl = $base;
+        $registry = Registry::getInstance();
+        $config = $registry->getConfig();
+        $baseUrl = $config->get('base_url');
+        return $baseUrl;
     }
 
-    // Generate URL by name with URL
-    //
-    // Todo:
-    // - Should take the entire URL into consideration. It should consider: base, scheme, host, port, # fragment, protocol (ssl or not), query, and any other URL parts that I may didn't mention.
+    /**
+     * Generate URL by name with URL.
+     *
+     * The URL generator takes
+     * - Should take the entire URL into consideration. It should consider:
+     *   - protocol
+     *   - base url
+     *   - port
+     *   - base path: This is a relative path. Example: `example.com/foo`, where URLS are generated as `example.com/foo/dashboard`.
+     *   - path with arguments:
+     *   - query (parameters)
+     *   - hash fragment (anchor)
+     *
+     * Anatomy of the $url parameter:
+     * - `name`
+     * - `scheme`: indicates the protocol.
+     * - `base`: relative to
+     * - `ssl`
+     * - `port`
+     * - `query`
+     * - `#`
+     *
+     * @param array|null $url The URL to generate.
+     * @param bool       $full Generate full URL with with base.
+     *
+     * @return Returns string on success. Otherwise, returns either null on error or false if route cannot be found.
+     *
+     * @todo Allow the function to also generate URLS by 1) controller & action name,
+     *  and allow function to generate 2) URL with strings. See CakePHP's url() for inspiration.
+     *
+     *  Example:
+     *  1) self::url(['controller'=>'dashboard', 'action'=>'settings'], true) => http://example.com/admin/dashboard/settings
+     *  2) self::url('path/to/data', true) => http://example.com/path/to/data
+     */
 
-    public static function url($name, $args = array())
+    public static function url($name = null, $args = [], $query = [])
     {
+        // Get route
         $routeCollection = self::getRouteCollection();
         $route = $routeCollection->get($name);
 
+        // Return error if route cannot be found
         if ($route === false) {
             return false;
         }
 
+        // Interpolate args into path
         $path = $route->getPath();
         $path = self::subArgs($path, $args);
-        return $path;
+
+        // Build query string
+        if (empty($query)) {
+            $params = "";
+        }
+        else if (count($query) == 1) {
+            $params = '?'.key($query).'='.current($query);
+        }
+        else {
+            $params = "";
+            foreach ($query as $key=>$val) {
+                $params .= '&'.$key.'='.$val;
+            }
+            $params[0] = '?'; // replace first '&' with '?'.
+        }
+
+        // Compose URL
+        $url = self::fullBaseUrl() . $path . $params;
+
+        // Return URL
+        return $url;
     }
 
 }
