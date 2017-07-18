@@ -5,6 +5,14 @@
     "homepage": "https://github.com/gmtry/geometry",
     "type": "library",
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "twig/twig": "~1.0",
+        "gmtry/octagon": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Fabric\\": "lib/Fabric/"
+        }
     }
 }

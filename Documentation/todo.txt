@@ -53,26 +53,12 @@ TBD
   After building Floursack, extract Octagon to its own repo, give it
   its own brand (logo, website, documentation, etc.).
 
-+ 2016/05/25: I was experiencing an error I received this PHP fatal error (paraphrased):
-    "Reached maximum nest level for function; aborting."
-  The issue seemed to be comming from \Octagon\View\View.php. I couldn't figure out
-  what could be causing, but I found this to be the issue after investigating problem.
-  Apparently this was the problem: 1) When an error occurs in \Octagon\View\View,
-  it creates a View instance so it can return a nice error message. The problem
-  with that particular situation was that I had deleted the DEFAULT_ERROR_TEMPLATE file,
-  but the thing was that's the template that View uses in its error reporting.
-  So, View calls View (sub) because it can't find DEFAULT_ERROR_TEMPLATE. Now,
-  View (sub) calls View (subsub) because it can't find DEFAULT_ERROR_TEMPLATE.
-  Then, View (subsub) calls View (subsubsub) because---well, you guessed it---
-  it can't find DEFAULT_ERROR_TEMPLATE. And the stories continues, until it
-  reaches the maximum nest level mentioned above.
-
   I need to solve it problem by letting checking to see if the files exists.
 
 + 2016/08/20: In source\config.php, rename "default_not_found_template" to "not_found_template"
   and "default_error_template" to "fatal_error_template"
 
-+ 2016/08/20: Improve Registry object by giving it get() and set() methods so that
++ 2016/08/20 [IGNORE]: Improve Registry object by giving it get() and set() methods so that
   objects can be added without needing to write a method everytime we want to add
   an object. We instead maintain an array and use set() and get() to add the objects
   to the array.
@@ -103,6 +89,10 @@ TBD
   Geometry will itself be a package and will require the Octagon package to work.
   I will join the two using Composer.
 
++ 2016/11/16: Implement middleware.
+
+
++ 2016/11/20: Improve route assignment. Let it be more flexible and more friendly, like Laravel.
 
 DONE
 

@@ -9,8 +9,11 @@
 *
 */
 
+/*
 use Octagon\Routing\Route;
+use Octagon\Routing\Router;
 use Octagon\Routing\RouteCollection;
+*/
 
 /*
 *-------------------------------------------------------------------------------
@@ -29,11 +32,13 @@ use Octagon\Routing\RouteCollection;
  * - namespace
  * - name
  *
- * Syntax:
- *   <routename> = (get|post|put|delete):<namespace>/<id>
+ * Format (in EBNF):
+ *   routename = http_method '.' app '.' namespace '.' name ;
+ *   namespace = name {'.' name} ;
+ *   name = (digit | letter | '_') {name} ;
 
  * Example:
- *   get:static.policy/privacy
+ *   get.marketplace.static.policy.view_privacy
  *
  * Explanation:
  *   The method is 'get'; namespace is 'static.policy'; and 'privacy' is the id
@@ -42,15 +47,6 @@ use Octagon\Routing\RouteCollection;
 
 // Create route collection
 
-$routeCollection = new RouteCollection();
-
-// Test
-
-$routeCollection->add('get:home/landing', new Route('/', [
-        'method'     => 'GET',
-        'controller' => 'Home',
-        'action'     => 'landing'
-    ]
+$router->get('/', 'index@App:Controller:Home', array(
+    "name"=>"get.home.index"
 ));
-
-return $routeCollection;

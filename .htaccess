@@ -1,5 +1,6 @@
-Options +FollowSymLinks
+# This file redirects the visitor to the `public` directory.
+
 RewriteEngine on
+
 RewriteBase /
-RewriteRule ^$   public/    [L]    
-RewriteRule (.*) public/$1  [L]
+RewriteRule ^(.*) public/$1 [L]

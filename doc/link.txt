@@ -1,6 +1,0 @@
-http://stackoverflow.com/questions/676846/do-ajax-requests-retain-php-session-info
-http://stackoverflow.com/questions/10331084/error-logging-in-a-smooth-way
-https://en.wikipedia.org/wiki/Single_responsibility_principle
-http://programmers.stackexchange.com/questions/194820/writing-your-own-framework-or-using-an-existing-one?rq=1
-http://programmers.stackexchange.com/questions/24170/after-how-much-experience-should-one-start-to-use-a-framework-for-serious-devel?rq=1
-http://chris.beams.io/posts/git-commit
