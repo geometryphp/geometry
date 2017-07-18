@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.4",
         "twig/twig": "~1.0",
-        "gmtry/octagon": "@dev"
+        "gmtry/octagon": "dev-master"
     },
     "autoload": {
         "psr-4": {

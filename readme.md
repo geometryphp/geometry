@@ -22,4 +22,4 @@ Geometry aims to become a stable and well-designed production framework. Current
 
 # Installing
 
-1. Run `composer create-project gmtry/geometry`
+1. Run `composer create-project gmtry/geometry [your-app-name] dev-master`
